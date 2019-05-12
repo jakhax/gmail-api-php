@@ -1,5 +1,6 @@
 /public/bundles/
 /var/
 /vendor/
-credentials
+credentials.json
+token.json
 .idea/

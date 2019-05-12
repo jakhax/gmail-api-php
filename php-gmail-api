@@ -1,16 +1,17 @@
 #!/usr/bin/env php
 
 <?php
+
 require_once __DIR__ . '/vendor/autoload.php';
+
+define('DOCUMENT_ROOT', dirname(realpath(__FILE__)).'/');
 
 use Symfony\Component\Console\Application;
 use App\Command\SimpleGmailCommand;
 use App\GmailApi\Mailer\GmailHandler;
-use App\kty;
 
-$gmail=new kty();
+$app= new Application("Gmail Api CLI");
 
-
-$app= new Application("GmailApi CLI");
-
+// to implement Dependency injection
+$app->add(new SimpleGmailCommand(new GmailHandler()));
 $app->run();

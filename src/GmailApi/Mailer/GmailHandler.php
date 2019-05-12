@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\GmailApi\Mailer;
 use Google_Client;
 use Google_Service_Gmail;
@@ -13,7 +12,7 @@ class GmailHandler implements MailerInterface
     public function createService(Google_Client $client): Google_Service_Gmail
     {
         $service=new Google_Service_Gmail($client);
-        $this->mailer=$service->users_messages;
+        $this->service=$service;
         return $service;
 
     }
@@ -41,6 +40,6 @@ class GmailHandler implements MailerInterface
             ->encodeString($message->toString());
         $gmailMessage= new Google_Service_Gmail_Message();
         $gmailMessage->setRaw($messageBase64);
-        echo $this->mailer.send("me",$gmailMessage);
+        $this->service->users_messages->send("me",$gmailMessage);
     }
 }
