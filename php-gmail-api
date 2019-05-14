@@ -8,26 +8,13 @@ define('DOCUMENT_ROOT', dirname(realpath(__FILE__)).'/');
 
 use Symfony\Component\Console\Application;
 use App\Command\SimpleGmailCommand;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\Config\FileLocator;
 
-$containerBuilder = new ContainerBuilder();
-
-$loader= new YamlFileLoader($containerBuilder, new FileLocator(DOCUMENT_ROOT."/config"));
-$loader->load('services.yaml');
-//
-//$containerBuilder->register('gmail.handler','\App\GmailApi\Mailer\GmailHandler');
-//
-//$containerBuilder->register('simple.gmail.command','\App\Command\SimpleGmailCommand')
-//        ->addArgument(new Reference('gmail.handler'));
-//
+$container= include DOCUMENT_ROOT.'src/container.php';
 
 $app= new Application("Gmail Api CLI");
 
 /** @var SimpleGmailCommand */
-$simpleGmailCommand=$containerBuilder->get('simple.gmail.command');
+$simpleGmailCommand=$container->get('simple.gmail.command');
 
 // to implement Dependency injection
 $app->add($simpleGmailCommand);
