@@ -4,7 +4,7 @@
 
 ## Installation
 ```bash
-git clone 
+git clone https://github.com/jakhax/gmail-api-php.git
 composer install
 ```
 
@@ -27,7 +27,7 @@ composer install
 ```
 
 ## next steps 
-- implement dependency injection using symfony service containers,[symfony dependency injection](https://symfony.com/doc/current/components/dependency_injection.html).
-- Add support for batch email.
-- Add gmail service account support.
-- Command for getting recipients and mail from a files(e.g csv file).
++ [x] implement dependency injection using symfony service containers,[symfony dependency injection](https://symfony.com/doc/current/components/dependency_injection.html).
++ [ ] Add support for batch email.
++ [ ] Add gmail service account support.
++ [ ] Command for getting recipients and mail from a files(e.g csv file).
