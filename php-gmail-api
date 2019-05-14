@@ -9,9 +9,22 @@ define('DOCUMENT_ROOT', dirname(realpath(__FILE__)).'/');
 use Symfony\Component\Console\Application;
 use App\Command\SimpleGmailCommand;
 use App\GmailApi\Mailer\GmailHandler;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
+
+$containerBuilder = new ContainerBuilder();
+
+$containerBuilder->register('gmail.handler','\App\GmailApi\Mailer\GmailHandler');
+
+$containerBuilder->register('simple.gmail.command','\App\Command\SimpleGmailCommand')
+        ->addArgument(new Reference('gmail.handler'));
+
 
 $app= new Application("Gmail Api CLI");
 
+/** @var SimpleGmailCommand */
+$simpleGmailCommand=$containerBuilder->get('simple.gmail.command');
+
 // to implement Dependency injection
-$app->add(new SimpleGmailCommand(new GmailHandler()));
+$app->add($simpleGmailCommand);
 $app->run();

@@ -2,11 +2,15 @@
     "require": {
         "symfony/console": "^4.2",
         "google/apiclient": "^2.0",
-        "swiftmailer/swiftmailer": "^6.0"
+        "swiftmailer/swiftmailer": "^6.0",
+        "symfony/dependency-injection": "^4.2"
     },
     "autoload": {
         "psr-4": {
             "App\\": "src/"
         }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.2"
     }
 }
