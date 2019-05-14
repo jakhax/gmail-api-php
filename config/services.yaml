@@ -1,0 +1,8 @@
+services:
+
+  simple.gmail.command:
+    class: '\App\Command\SimpleGmailCommand'
+    arguments: ['@gmail.handler']
+
+  gmail.handler:
+    class: '\App\GmailApi\Mailer\GmailHandler'
